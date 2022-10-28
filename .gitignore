@@ -1,4 +1,7 @@
 
 
+build
+*.class
+
 .gradle
 .idea
