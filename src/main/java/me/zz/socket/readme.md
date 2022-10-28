@@ -2,7 +2,8 @@
 
 #### 参考文章
 
-- https://www.baeldung.com/a-guide-to-java-sockets
+- A Guide to Java Sockets https://www.baeldung.com/a-guide-to-java-sockets
+- 命令行编译和执行Java工程 https://www.jianshu.com/p/e42dc0652b6d
 
 #### 运行
 
