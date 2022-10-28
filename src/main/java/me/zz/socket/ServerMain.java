@@ -15,14 +15,20 @@ public class ServerMain {
             ServerSocket serverSocket = new ServerSocket(port);
             System.out.printf("listening at port:%d ...\n", port);
 
+
             while (true) {
-                Socket clientSocket = serverSocket.accept();
-                processClientSocket(clientSocket);
+                // 这里必须在新建线程之前，否则会出错：while 循环创建了大量不必要的线程在等待客户端连接。
+                final Socket clientSocket = serverSocket.accept();
+
+                new Thread(() -> {
+                    processClientSocket(clientSocket);
+                }).start();
             }
 
         } catch (IOException exception) {
             System.out.printf("exception:%s\n", exception);
         }
+
     }
 
     private void processClientSocket(Socket clientSocket) {
@@ -35,7 +41,7 @@ public class ServerMain {
             while (true) {
 
                 String clientInputContent = in.readLine();
-                System.out.printf("receive msg:[%s] from port:[%d]\n", clientInputContent, clientSocket.getPort());
+                System.out.printf("receive port:[%d] msg:[%s]\n", clientSocket.getPort(), clientInputContent);
                 if ("hello server".equals(clientInputContent)) {
                     out.println("hello client");
                 } else if ("bye".equals(clientInputContent)) {
