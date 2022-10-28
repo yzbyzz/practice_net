@@ -6,6 +6,7 @@ package me.zz.socket;
  */
 public class ServerMain {
 
+
     public static void main(String[] args) {
         new SocketServer().start(7070);
     }

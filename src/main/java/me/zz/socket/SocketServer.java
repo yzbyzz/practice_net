@@ -1,5 +1,8 @@
 package me.zz.socket;
 
+import me.zz.common.Logger;
+import me.zz.common.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,6 +15,7 @@ import java.net.Socket;
  * @date 2022/10/28 16:19
  */
 public class SocketServer {
+    private static final Logger log = LoggerFactory.getLogger(SocketServer.class);
 
 
     public SocketServer() {
@@ -20,7 +24,7 @@ public class SocketServer {
     public void start(int port) {
         try {
             ServerSocket serverSocket = new ServerSocket(port);
-            System.out.printf("listening at port:%d ...\n", port);
+            log.info("listening at port:%d ...", port);
 
 
             while (true) {
@@ -33,13 +37,13 @@ public class SocketServer {
             }
 
         } catch (IOException exception) {
-            System.out.printf("exception:%s\n", exception);
+            log.error("exception:%s", exception);
         }
 
     }
 
-    private void processClientSocket(Socket clientSocket) {
-        System.out.printf("client connect, channel:%s, port:%d\n",
+    protected void processClientSocket(Socket clientSocket) {
+        log.info("client connect, channel:%s, port:%d",
                 clientSocket.getChannel(), clientSocket.getPort());
 
         try {
@@ -48,7 +52,7 @@ public class SocketServer {
             while (true) {
 
                 String clientInputContent = in.readLine();
-                System.out.printf("receive port:[%d] msg:[%s]\n", clientSocket.getPort(), clientInputContent);
+                log.debug("receive port:[%d] msg:[%s]", clientSocket.getPort(), clientInputContent);
                 if ("hello server".equals(clientInputContent)) {
                     out.println("hello client");
                 } else if ("bye".equals(clientInputContent)) {

@@ -1,5 +1,8 @@
 package me.zz.socket;
 
+import me.zz.common.Logger;
+import me.zz.common.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,6 +14,8 @@ import java.net.Socket;
  * @date 2022/10/28 16:34
  */
 public class SocketClient {
+    private static final Logger log = LoggerFactory.getLogger(SocketClient.class);
+
     private int id;
     private Socket clientSocket;
     private BufferedReader in;
@@ -27,7 +32,7 @@ public class SocketClient {
             out = new PrintWriter(clientSocket.getOutputStream(), true);
 
         } catch (IOException e) {
-            System.out.printf("exception:%s\n", e);
+            log.error("exception:%s", e);
         }
 
     }
@@ -36,11 +41,11 @@ public class SocketClient {
         try {
             out.println(msg);
             String resp = in.readLine();
-            System.out.printf("receive id:[%d] port:[%d] msg: [%s]\n", id, clientSocket.getLocalPort(), resp);
+            log.debug("receive id:[%d] port:[%d] msg: [%s]", id, clientSocket.getLocalPort(), resp);
             return resp;
 
         } catch (IOException e) {
-            System.out.printf("exception:%s\n", e);
+            log.error("exception:%s", e);
             return "exception";
         }
     }
