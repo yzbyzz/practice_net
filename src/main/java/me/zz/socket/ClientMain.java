@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 /**
- * @author qingzhi
+ * @author zz
  * @date 2022/10/28 14:19
  */
 public class ClientMain {

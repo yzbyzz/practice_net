@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * @author qingzhi
+ * @author zz
  * @date 2022/10/27 19:38
  */
 public class ServerMain {
@@ -16,11 +16,18 @@ public class ServerMain {
             System.out.printf("listening at port:%d ...\n", port);
 
             Socket clientSocket = serverSocket.accept();
+            processClientSocket(clientSocket);
 
-            System.out.printf("client connect, channel:%s, port:%d\n",
-                    clientSocket.getChannel(), clientSocket.getPort());
+        } catch (IOException exception) {
+            System.out.printf("exception:%s\n", exception);
+        }
+    }
 
+    private void processClientSocket(Socket clientSocket) {
+        System.out.printf("client connect, channel:%s, port:%d\n",
+                clientSocket.getChannel(), clientSocket.getPort());
 
+        try {
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
             while (true) {
@@ -36,9 +43,8 @@ public class ServerMain {
                     out.println("unrecognised greeting");
                 }
             }
-
-        } catch (IOException exception) {
-            System.out.printf("exception:%s\n", exception);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
