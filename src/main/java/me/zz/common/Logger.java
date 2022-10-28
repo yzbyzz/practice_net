@@ -1,7 +1,7 @@
 package me.zz.common;
 
 /**
- * @author qingzhi
+ * @author zz
  * @date 2022/10/28 16:39
  */
 public class Logger {

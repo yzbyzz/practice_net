@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author qingzhi
+ * @author zz
  * @date 2022/10/28 16:38
  */
 public class LoggerFactory {
