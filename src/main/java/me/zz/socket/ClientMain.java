@@ -10,11 +10,22 @@ public class ClientMain {
     public static void main(String[] args) {
 
         int clientNum = 10;
+
+        Thread[] threadList = new Thread[clientNum];
         for (int i = 0; i < clientNum; i++) {
             final int id = i;
-            new Thread(() -> {
+            Thread thread = new Thread(() -> {
                 createClient(id);
-            }).start();
+            });
+            thread.start();
+            threadList[i] = thread;
+        }
+        try {
+            for (Thread thread : threadList) {
+                thread.join();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 

@@ -8,5 +8,12 @@
 
 #### 运行
 
+##### V1
+
 - 启动 server `sh server.sh`
-- 启动 client `sh client.sh` 
+- 启动 client `sh client.sh`
+
+##### V2
+
+- 启动 server `src.main.java.me.zz.socket.ServerMain.main`
+- 启动 client `src.test.java.me.zz.socket.ClientMainTest.main`
