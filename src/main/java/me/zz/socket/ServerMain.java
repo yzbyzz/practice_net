@@ -15,8 +15,10 @@ public class ServerMain {
             ServerSocket serverSocket = new ServerSocket(port);
             System.out.printf("listening at port:%d ...\n", port);
 
-            Socket clientSocket = serverSocket.accept();
-            processClientSocket(clientSocket);
+            while (true) {
+                Socket clientSocket = serverSocket.accept();
+                processClientSocket(clientSocket);
+            }
 
         } catch (IOException exception) {
             System.out.printf("exception:%s\n", exception);
@@ -33,7 +35,7 @@ public class ServerMain {
             while (true) {
 
                 String clientInputContent = in.readLine();
-                System.out.printf("receive msg:[%s]\n", clientInputContent);
+                System.out.printf("receive msg:[%s] from port:[%d]\n", clientInputContent, clientSocket.getPort());
                 if ("hello server".equals(clientInputContent)) {
                     out.println("hello client");
                 } else if ("bye".equals(clientInputContent)) {

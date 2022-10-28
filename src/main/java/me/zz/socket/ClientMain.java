@@ -51,13 +51,24 @@ public class ClientMain {
     }
 
     public static void main(String[] args) {
-        ClientMain clientMain = new ClientMain();
-        clientMain.startConnection("127.0.0.1", 7070);
-        clientMain.sendMessage("hello server");
-        clientMain.sendMessage("hhh");
-        clientMain.sendMessage("hello server");
-        clientMain.sendMessage("hhh");
-        clientMain.sendMessage("bye");
-        clientMain.stopConnection();
+        try {
+            ClientMain clientMain = new ClientMain();
+            clientMain.startConnection("127.0.0.1", 7070);
+
+            clientMain.sendMessage("hello server");
+            Thread.sleep(1000);
+            clientMain.sendMessage("hhh");
+            Thread.sleep(1000);
+            clientMain.sendMessage("hello server");
+            Thread.sleep(1000);
+            clientMain.sendMessage("hhh");
+            Thread.sleep(1000);
+            clientMain.sendMessage("bye");
+            Thread.sleep(1000);
+
+            clientMain.stopConnection();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
