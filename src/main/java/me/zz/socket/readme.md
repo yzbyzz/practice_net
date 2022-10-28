@@ -8,5 +8,5 @@
 
 #### 运行
 
-- `sh server.sh` 启动 server
-- `sh client.sh` 启动 client
+- 启动 server `sh server.sh`
+- 启动 client `sh client.sh` 

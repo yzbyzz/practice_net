@@ -1,72 +1,40 @@
 package me.zz.socket;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
-
 /**
  * @author zz
  * @date 2022/10/28 14:19
  */
 public class ClientMain {
-    private Socket clientSocket;
-    private BufferedReader in;
-    private PrintWriter out;
 
-    public void startConnection(String ip, int port) {
-        try {
-            clientSocket = new Socket(ip, port);
-            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            out = new PrintWriter(clientSocket.getOutputStream(), true);
-
-        } catch (IOException e) {
-            System.out.printf("exception:%s\n", e);
-        }
-
-    }
-
-    public String sendMessage(String msg) {
-        try {
-            out.println(msg);
-            String resp = in.readLine();
-            System.out.printf("receive msg: [%s]\n", resp);
-            return resp;
-
-        } catch (IOException e) {
-            System.out.printf("exception:%s\n", e);
-            return "exception";
-        }
-    }
-
-    public void stopConnection() {
-        try {
-            in.close();
-            out.close();
-            clientSocket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static void main(String[] args) {
+
+        int clientNum = 10;
+        for (int i = 0; i < clientNum; i++) {
+            final int id = i;
+            new Thread(() -> {
+                createClient(id);
+            }).start();
+        }
+    }
+
+    private static void createClient(int id) {
         try {
-            ClientMain clientMain = new ClientMain();
-            clientMain.startConnection("127.0.0.1", 7070);
+            SocketClient socketClient = new SocketClient(id);
+            socketClient.startConnection("127.0.0.1", 7070);
 
-            clientMain.sendMessage("hello server");
+            socketClient.sendMessage("hello server");
             Thread.sleep(1000);
-            clientMain.sendMessage("hhh");
+            socketClient.sendMessage("hhh");
             Thread.sleep(1000);
-            clientMain.sendMessage("hello server");
+            socketClient.sendMessage("hello server");
             Thread.sleep(1000);
-            clientMain.sendMessage("hhh");
+            socketClient.sendMessage("hhh");
             Thread.sleep(1000);
-            clientMain.sendMessage("bye");
+            socketClient.sendMessage("bye");
             Thread.sleep(1000);
 
-            clientMain.stopConnection();
+            socketClient.stopConnection();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
