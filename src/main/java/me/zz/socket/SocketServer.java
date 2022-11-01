@@ -55,6 +55,8 @@ public class SocketServer {
                     out.println("hello client");
                 } else if ("bye".equals(clientInputContent)) {
                     out.println("bye");
+                    out.println("close...");
+                    clientSocket.close();
                     break;
                 } else {
                     out.println("unrecognised greeting");
