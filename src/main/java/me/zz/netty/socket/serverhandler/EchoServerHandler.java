@@ -10,6 +10,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        // Netty releases it for you when it is written out to the wire.
         ctx.write(msg);
         ctx.flush();
     }
