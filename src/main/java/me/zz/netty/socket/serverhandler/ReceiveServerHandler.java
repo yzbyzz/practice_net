@@ -1,4 +1,4 @@
-package me.zz.netty.socket.handler;
+package me.zz.netty.socket.serverhandler;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
