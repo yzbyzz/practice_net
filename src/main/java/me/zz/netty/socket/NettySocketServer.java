@@ -6,6 +6,8 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import me.zz.common.Logger;
 import me.zz.common.LoggerFactory;
+import me.zz.netty.socket.handler.EchoServerHandler;
+import me.zz.netty.socket.handler.ReceiveServerHandler;
 
 /**
  * @author zz
@@ -33,7 +35,9 @@ public class NettySocketServer {
                     .childHandler(new ChannelInitializer() {
                         @Override
                         protected void initChannel(Channel ch) throws Exception {
-                            ch.pipeline().addLast(new DiscardServerHandler());
+//                            ch.pipeline().addLast(new DiscardServerHandler());
+//                            ch.pipeline().addLast(new ReceiveServerHandler());
+                            ch.pipeline().addLast(new EchoServerHandler());
                         }
                     })
                     .option(ChannelOption.SO_BACKLOG, 128)
@@ -51,6 +55,4 @@ public class NettySocketServer {
             workerEventLoopGroup.shutdownGracefully();
         }
     }
-
-
 }
