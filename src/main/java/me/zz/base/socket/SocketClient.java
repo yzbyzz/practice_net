@@ -1,4 +1,4 @@
-package me.zz.socket;
+package me.zz.base.socket;
 
 import me.zz.common.Logger;
 import me.zz.common.LoggerFactory;

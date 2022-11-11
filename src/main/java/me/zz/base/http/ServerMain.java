@@ -1,4 +1,4 @@
-package me.zz.http;
+package me.zz.base.http;
 
 /**
  * @author zz

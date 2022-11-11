@@ -16,4 +16,4 @@
 ##### V2
 
 - 启动 server： 在 IDEA 中运行`src.main.java.me.zz.socket.ServerMain.main`
-- 启动 client： 在 IDEA 中运行`src.test.java.me.zz.socket.ClientMainTest.main`
+- 启动 client： 在 IDEA 中运行`src.test.java.ClientMainTest.main`

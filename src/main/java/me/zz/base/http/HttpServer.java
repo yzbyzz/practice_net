@@ -1,8 +1,8 @@
-package me.zz.http;
+package me.zz.base.http;
 
+import me.zz.base.socket.SocketServer;
 import me.zz.common.Logger;
 import me.zz.common.LoggerFactory;
-import me.zz.socket.SocketServer;
 
 import java.io.*;
 import java.net.Socket;

@@ -1,4 +1,4 @@
-package me.zz.nettysocket;
+package me.zz.netty.socket;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;

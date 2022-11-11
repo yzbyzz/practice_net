@@ -1,4 +1,4 @@
-package me.zz.socket;
+package me.zz.base.socket;
 
 /**
  * @author zz

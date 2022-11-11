@@ -1,5 +1,6 @@
-package me.zz.socket;
+package me.zz.base.socket;
 
+import me.zz.base.socket.ClientMain;
 import org.junit.jupiter.api.Test;
 
 /**
